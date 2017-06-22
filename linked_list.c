@@ -1,25 +1,25 @@
 #include<string.h>
 #include<stdio.h>
 #include<stdlib.h>
-#include<boolean.h>
+#include<stdbool.h>
 struct node{
 int data;
 int key;
 struct node *next;
-}
+};
 struct node *head=NULL;
 struct node *current=NULL;
 void printlist()
 {
-printf("[");
 struct node *ptr=head;
-while(*ptr!=NULL){
-printf("%d,%d",ptr->key,ptr->data);
+printf("\n[ ");
+while(ptr!=NULL){
+printf("(%d,%d)",ptr->key,ptr->data);
 ptr=ptr->next;
 }
 printf("]");
 } 
-void inserfirst(int key,int data)
+void insertfirst(int key,int data)
 {
 struct node *link= (struct node *)malloc(sizeof(struct node));
 link->key=key;
@@ -34,7 +34,9 @@ head=head->next;
 return templink;
 }
 bool isempty()
-return head==NULL;
+{
+return head == NULL;
+}
 int length()
 {
 int length=0;
@@ -43,13 +45,11 @@ for(current=head;current!=NULL;current=current->next)
 length++;
 return length;
 }
-struct node * find(int key)
+struct node* find(int key)
 {
-struct node * current=head;
+struct node* current=head;
 if(head==NULL)
-{
 return NULL;
-}
 while(current->key!=key)
 {
 if(current->next==NULL)
@@ -67,10 +67,12 @@ if(head==NULL)
 return NULL;
 while(current->key!=key)
 {
-if(current->next==null)
+if(current->next==NULL)
 {
 return NULL;
+}
 else
+{
 previous=current;
 current=current->next;
 }
@@ -78,7 +80,7 @@ current=current->next;
 if(current==head)
 head=head->next;
 else
-previous->next=current->next
+previous->next=current->next;
 return current;
 }
 main()
@@ -89,10 +91,10 @@ insertfirst(3,30);
 insertfirst(4,40);
 printf("original list:");
 printlist();
-while(!=isempty())
+while(!isempty())
 {
 struct node *temp=deletefirst();
-printf(deleted value:);
+printf("deleted value:");
 printf("(%d,%d)",temp->key,temp->data);
 }
 printf("after deleteing all items,list:");
@@ -102,16 +104,19 @@ insertfirst(2,20);
 insertfirst(3,30);
 insertfirst(4,40);
 insertfirst(5,50);
-printf("Restored list:)';
+printf("Restored list:");
 printlist();
-struct node* foundlink=find(3);
+printf("\n");
+struct node *foundlink=find(3);
 if(foundlink!=NULL){
 printf("element found");
-printf("(%d,%d)",foundlink->link,foundlink->data);
+printf("(%d,%d)",foundlink->key,foundlink->data);
+printf("\n");
 }
 else
 printf("Element not found");
 delete(4);
 printf("after deleting an element");
 printlist();
+printf("\n");
 }
